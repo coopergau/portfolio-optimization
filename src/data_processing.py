@@ -4,7 +4,7 @@ import yfinance as yf
 TRADING_DAYS_PER_YEAR = 252
 
 def get_asset_data(tickers, days_back):
-    '''
+    """
     Calculates the historical individual returns and pairwise covariance 
     of a group of assets.
 
@@ -16,7 +16,7 @@ def get_asset_data(tickers, days_back):
     Returns:
         returns_vec (np.array): Expected returns for each asset (1D array).
         cov_matrix (np.array): Covariance matrix of asset returns (2D array).
-    '''
+    """
     now = datetime.now()
     start_time = (now - timedelta(days=days_back))
 
