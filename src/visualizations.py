@@ -1,4 +1,5 @@
 import numpy as np 
+import cvxpy as cp
 import matplotlib.pyplot as plt
 from optimization import optimize_portfolio, portfolio_metrics
 
@@ -30,7 +31,15 @@ def get_efficient_frontier(returns, cov_matrix, min_return, max_return, num_retu
     actual_returns = []
     for target_return in target_returns:
         weights = optimize_portfolio(returns, cov_matrix, target_return)
-        portfolio_return, portfolio_risk = portfolio_metrics(returns, cov_matrix, weights)
+        try:
+            portfolio_return, portfolio_risk = portfolio_metrics(returns, cov_matrix, weights)
+        except (ValueError, cp.error.SolverError) as e:
+            # This will occur if there is not a feasible solution with the given
+            # portfolio and target return
+            print(f"Infeasible solution for target return: {target_return}, Error: {str(e)}")
+            risks.append(np.nan)
+            actual_returns.append(np.nan)
+            continue 
 
         risks.append(portfolio_risk)
         actual_returns.append(portfolio_return)

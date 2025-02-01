@@ -32,7 +32,7 @@ def get_asset_data(tickers, days_back):
 
     # Get covariance matrix
     cov_df = daily_returns.cov()
-    cov_matrix = cov_df.to_numpy()
+    cov_matrix = cov_df.to_numpy() * TRADING_DAYS_PER_YEAR
 
     return returns_vec, cov_matrix
     
