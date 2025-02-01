@@ -6,16 +6,20 @@ from visualizations import get_efficient_frontier, get_random_portfolios, plot_r
 
 import numpy as np
 
-ASSETS_PER_SAMPLE = 10
-TOTAL_DAYS_BACK = 365 * 3
+# Historical data settings
+TOTAL_YEARS_BACK = 3
+TOTAL_DAYS_BACK = 365 * TOTAL_YEARS_BACK
 
+# Optimization settings
 RISK_FREE_RETURN = 0.03
 TARGET_RETURN = 0.15
 
+# Efficient frontier settings
 MIN_RETURN = 0.05
 MAX_RETURN = 0.5
 NUM_RETURNS = 50
 
+# Visualizing portfolios settings
 RANDOM_PORTFOLIOS = 1_000_000
 
 def main():
@@ -23,9 +27,7 @@ def main():
     # Some tickers were removed because of a lack of data on yahoo finance:
     # SPLK, FISV, SGEN
     tickers_df = pd.read_csv("../nasdaq100.csv")
-    nasdaq_100_tickers = tickers_df["Ticker"].tolist() 
-    tickers = random.sample(nasdaq_100_tickers, ASSETS_PER_SAMPLE)
-    tickers = nasdaq_100_tickers
+    tickers = tickers_df["Ticker"].tolist() 
 
     # Get expected returns vector and covariance matrix
     returns, cov_matrix = get_asset_data(tickers, TOTAL_DAYS_BACK)
