@@ -4,6 +4,29 @@ import random
 from src.optimization import optimize_portfolio, portfolio_metrics
 from src.data_processing import get_asset_data
 
+def test_valid_weights():
+    """
+    Test the weights sum to exactly one and are all non-negative.
+    """
+    # Select 10 random tickers
+    tickers_df = pd.read_csv("nasdaq100.csv")
+    all_tickers = tickers_df["Ticker"].tolist()
+    num_assets = 10
+    tickers = random.sample(all_tickers, num_assets)
+
+    # Get optimal portfolio weights
+    days_back = 30
+    target_return = 0.10
+    returns, cov_matrix = get_asset_data(tickers, days_back)
+    optimal_weights = optimize_portfolio(returns, cov_matrix, target_return)
+
+    # Round small negative that are essentially zero
+    optimal_weights[abs(0 - optimal_weights) < 1e-5] = 0
+
+    assert np.all(optimal_weights >= 0), "All weights must be non-negative"
+    assert np.isclose(np.sum(optimal_weights), 1), "Sum of weights must be 1"
+
+
 def test_basic_optimal_weights():
     """
     Test the correct weights are returned for a basic case. The two assets have the same expected return,
@@ -15,11 +38,11 @@ def test_basic_optimal_weights():
                            [0.0, 0.1]])
     target_return = 0.15
     
-    # Pre calculated based on the given covariance matrix
+    # Pre calculated values based on the given covariance matrix
     expected_weights = np.array([1/3, 2/3])
     actual_weights = optimize_portfolio(returns, cov_matrix, target_return)
 
-    assert np.all(np.isclose(expected_weights, actual_weights, atol=1e-8)), "Weights do not match expected values"
+    assert np.allclose(expected_weights, actual_weights, atol=1e-8), "Weights do not match expected weights"
 
 def test_fuzz_optimization_is_optimal():
     """
@@ -52,4 +75,20 @@ def test_fuzz_optimization_is_optimal():
             (rand_risk < min_risk) and (rand_return >= target_return)
         ), f"Random portfolio found with risk {rand_risk:.4f} < optimal {min_risk:.4f} and return {rand_return:.4f} >= target {target_return:.4f}"
 
-    
+def test_portfolio_metrics_are_accurate():
+    """
+    Test that the expected return and risk for a portfolio are accurate.
+    """
+    returns = np.array([0.1, 0.2])
+    cov_matrix = np.array([[0.2, 0.05],
+                           [0.05, 0.1]])
+    weights = np.array([0.25, 0.75])
+
+    # Pre calculated values based on the vars above
+    intended_return = 0.175
+    intended_risk = np.sqrt(0.0875)
+
+    actual_return, actual_risk = portfolio_metrics(returns, cov_matrix, weights)
+
+    assert np.allclose(intended_return, actual_return, atol=1e-8), "Portfolio return calculation gives incorrect return"
+    assert np.allclose(intended_risk, actual_risk, atol=1e-8), "Portfolio risk calculation gives incorrect risk"
