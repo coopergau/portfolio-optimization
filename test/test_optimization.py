@@ -1,8 +1,10 @@
 import numpy as np
 import pandas as pd
 import random
-from src.optimization import optimize_portfolio, portfolio_metrics
+from src.optimization import optimize_portfolio
 from src.data_processing import get_asset_data
+from src.portfolio_stats import portfolio_return_and_risk
+
 
 def test_valid_weights():
     """
@@ -60,7 +62,7 @@ def test_fuzz_optimization_is_optimal():
     target_return = 0.10
     returns, cov_matrix = get_asset_data(tickers, days_back)
     optimal_weights = optimize_portfolio(returns, cov_matrix, target_return)
-    _, min_risk = portfolio_metrics(returns, cov_matrix, optimal_weights)
+    _, min_risk = portfolio_return_and_risk(returns, cov_matrix, optimal_weights)
 
     # Compare to portfolios with randomly generated weights
     num_trials = 10000
@@ -68,27 +70,10 @@ def test_fuzz_optimization_is_optimal():
         random_weights = np.random.rand(num_assets)
         random_weights /= np.sum(random_weights)
 
-        rand_return, rand_risk = portfolio_metrics(returns, cov_matrix, random_weights)
+        rand_return, rand_risk = portfolio_return_and_risk(returns, cov_matrix, random_weights)
 
         # Assert no portfolio that gives at least the target return has a lower risk
         assert not (
             (rand_risk < min_risk) and (rand_return >= target_return)
         ), f"Random portfolio found with risk {rand_risk:.4f} < optimal {min_risk:.4f} and return {rand_return:.4f} >= target {target_return:.4f}"
 
-def test_portfolio_metrics_are_accurate():
-    """
-    Test that the expected return and risk for a portfolio are accurate.
-    """
-    returns = np.array([0.1, 0.2])
-    cov_matrix = np.array([[0.2, 0.05],
-                           [0.05, 0.1]])
-    weights = np.array([0.25, 0.75])
-
-    # Pre calculated values based on the vars above
-    intended_return = 0.175
-    intended_risk = np.sqrt(0.0875)
-
-    actual_return, actual_risk = portfolio_metrics(returns, cov_matrix, weights)
-
-    assert np.allclose(intended_return, actual_return, atol=1e-8), "Portfolio return calculation gives incorrect return"
-    assert np.allclose(intended_risk, actual_risk, atol=1e-8), "Portfolio risk calculation gives incorrect risk"

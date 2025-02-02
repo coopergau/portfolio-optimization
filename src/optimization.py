@@ -1,4 +1,3 @@
-import numpy as np
 import cvxpy as cp
 
 def optimize_portfolio(returns, cov_matrix, target_return):
@@ -32,24 +31,3 @@ def optimize_portfolio(returns, cov_matrix, target_return):
     prob.solve()
 
     return weights.value
-
-def portfolio_metrics(returns, cov_matrix, weights):
-    """
-    Calculates the expected return and risk (standard deviation) of a portfolio.
-
-    Args:
-        returns (np.array): Expected returns for each asset (1D array).
-        cov_matrix (np.array): Covariance matrix of asset returns (2D array).
-        weights (np.array): Portfolio weights for each asset (1D array).
-
-    Returns:
-        tuple: (portfolio_return, portfolio_risk)
-            - portfolio_return (float): Expected portfolio return.
-            - portfolio_risk (float): Expected portfolio risk (standard deviation).
-    """
-    portfolio_return = weights @ returns
-
-    portfolio_variance = weights.T @ cov_matrix @ weights
-    portfolio_risk = np.sqrt(portfolio_variance)
-
-    return portfolio_return, portfolio_risk

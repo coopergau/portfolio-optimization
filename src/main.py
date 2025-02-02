@@ -1,6 +1,7 @@
 import pandas as pd
 from data_processing import get_asset_data
-from optimization import optimize_portfolio, portfolio_metrics
+from optimization import optimize_portfolio
+from portfolio_stats import portfolio_return_and_risk
 from visualizations import get_efficient_frontier, get_random_portfolios, plot_random_portfolios_with_EF
 
 # Historical data settings
@@ -31,7 +32,7 @@ def main():
 
     # Solve using cvxpy
     weights = optimize_portfolio(returns, cov_matrix, TARGET_RETURN)
-    portfolio_return, portfolio_risk = portfolio_metrics(returns, cov_matrix, weights)
+    portfolio_return, portfolio_risk = portfolio_return_and_risk(returns, cov_matrix, weights)
 
     # Get the efficient fronteir data points
     ef_risks, ef_returns = get_efficient_frontier(returns, cov_matrix, MIN_RETURN, MAX_RETURN, NUM_RETURNS)
