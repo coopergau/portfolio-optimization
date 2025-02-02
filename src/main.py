@@ -1,10 +1,7 @@
 import pandas as pd
-import random
 from data_processing import get_asset_data
 from optimization import optimize_portfolio, portfolio_metrics
 from visualizations import get_efficient_frontier, get_random_portfolios, plot_random_portfolios_with_EF
-
-import numpy as np
 
 # Historical data settings
 TOTAL_YEARS_BACK = 3
@@ -31,20 +28,10 @@ def main():
 
     # Get expected returns vector and covariance matrix
     returns, cov_matrix = get_asset_data(tickers, TOTAL_DAYS_BACK)
-    np.set_printoptions(precision=2)
-    print(tickers)
-    print(returns)
-    print(cov_matrix)
 
     # Solve using cvxpy
     weights = optimize_portfolio(returns, cov_matrix, TARGET_RETURN)
     portfolio_return, portfolio_risk = portfolio_metrics(returns, cov_matrix, weights)
-    print(weights)
-    rounded_matrix = np.round(weights, 2)
-
-    print(rounded_matrix)
-    print(portfolio_return)
-    print(portfolio_risk)
 
     # Get the efficient fronteir data points
     ef_risks, ef_returns = get_efficient_frontier(returns, cov_matrix, MIN_RETURN, MAX_RETURN, NUM_RETURNS)
