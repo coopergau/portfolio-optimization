@@ -44,7 +44,7 @@ def test_basic_optimal_weights():
     expected_weights = np.array([1/3, 2/3])
     actual_weights = optimize_portfolio(returns, cov_matrix, target_return)
 
-    assert np.allclose(expected_weights, actual_weights, atol=1e-8), "Weights do not match expected weights"
+    assert np.allclose(expected_weights, actual_weights, atol=1e-8), "Resulting weights do not match expected weights"
 
 def test_fuzz_optimization_is_optimal():
     """

@@ -29,3 +29,13 @@ def test_sharpe_ratio_with_zero_risk_errors():
     valid_risk_free_rate = 0.02
     with pytest.raises(ValueError):
         portfolio_sharpe_ratio(valid_return, invalid_risk, valid_risk_free_rate)
+
+def test_basic_sharpe_ratio_is_correct():
+    portfolio_return = 0.13
+    portfolio_risk = 0.20
+    risk_free_rate = 0.03
+
+    expected_sharpe_ratio = 0.5
+    actual_sharpe_ratio = portfolio_sharpe_ratio(portfolio_return, portfolio_risk, risk_free_rate)
+
+    assert expected_sharpe_ratio == actual_sharpe_ratio, "Resulting Sharpe ratio is not as expected"
