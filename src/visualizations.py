@@ -63,7 +63,7 @@ def plot_random_portfolios_with_EF(ef_risks, ef_returns, max_sharpe_ratio, max_s
     plt.legend()
     plt.show()
 
-def display_portfolio_bar_chart(weights, assets, expected_return):
+def display_portfolio_bar_chart(weights, assets, title):
     """
     Displays a stacked bar chart showing the proportions of each asset in a ortfolio
     """
@@ -81,5 +81,26 @@ def display_portfolio_bar_chart(weights, assets, expected_return):
     
     handles, labels = plt.gca().get_legend_handles_labels()
     plt.legend(handles[::-1], labels[::-1], bbox_to_anchor=(1, 1), loc='best')
-    plt.title(f"Minimum Risk Portfolio with {expected_return*100} % Expected Return")
+    plt.title(title)
+    plt.show()
+
+def plot_monte_carlo_all(paths):
+    """
+    Plot the lines of all simulated portfolio paths.
+    """
+    plt.plot(paths.T)
+    plt.xlabel("Trading Days")
+    plt.ylabel("Portfolio Value")
+    plt.title("Portfolio Simulations")
+    plt.show()
+
+def plot_monte_carlo_avg(paths):
+    """
+    Plot the avrage of all the portfolio paths.
+    """
+    average_path = np.mean(paths, axis=0)
+    plt.plot(average_path)
+    plt.xlabel("Trading Days")
+    plt.ylabel("Portfolio Value")
+    plt.title("Average Performance of Portfolio")
     plt.show()
