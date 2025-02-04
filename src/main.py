@@ -1,6 +1,8 @@
 import pandas as pd
+import numpy as np
+from optimization import optimize_portfolio
 from data_processing import get_asset_data, get_efficient_frontier_data, get_random_portfolios
-from visualizations import  plot_random_portfolios_with_EF, plot_scatter 
+from visualizations import  plot_random_portfolios_with_EF, plot_scatter, display_portfolio_bar_chart
 
 import random
 
@@ -18,9 +20,6 @@ MIN_RETURN = 0.05
 MAX_RETURN = 0.8
 NUM_RETURNS = 51
 
-# Capital market line settings
-MARKET_ASSET = "QQQ"
-
 # Random portfolios settings
 RANDOM_PORTFOLIOS = 1_000
 
@@ -30,10 +29,17 @@ def main():
     # SPLK, FISV, SGEN
     tickers_df = pd.read_csv("../nasdaq100.csv")
     tickers = tickers_df["Ticker"].tolist()
-    tickers = random.sample(tickers, 10)
+    tickers = random.sample(tickers, 5)
 
     # Get expected returns vector and covariance matrix
     returns, cov_matrix = get_asset_data(tickers, TOTAL_DAYS_BACK)
+
+    # Get single minimum risk portfolio
+    weights = optimize_portfolio(returns, cov_matrix, TARGET_RETURN)
+    rounded_weights = np.round(weights, 3)
+    print(tickers)
+    print(rounded_weights)
+    display_portfolio_bar_chart(rounded_weights, tickers, TARGET_RETURN)
 
     # Get the efficient fronteir data points
     ef_returns, ef_risks, ef_sharp_ratios = get_efficient_frontier_data(returns, cov_matrix, RISK_FREE_RETURN, MIN_RETURN, MAX_RETURN, NUM_RETURNS)

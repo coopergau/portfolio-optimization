@@ -14,7 +14,6 @@ def optimize_portfolio(returns, cov_matrix, target_return):
         np.array: The optimal portfolio weights for each asset (1D array).
     """
     weights = cp.Variable(len(cov_matrix))
-
     objective = cp.Minimize(cp.quad_form(weights, cov_matrix))
 
     # Constraints: 
