@@ -1,6 +1,6 @@
 import numpy as np
 
-def brownian_simulation(initial_value, expected_return, expected_risk, total_time, step_size, sims):
+def simulate_portfolio_returns(initial_value, expected_return, expected_risk, total_time, step_size, sims):
     """
     Function simulates a portfolios performance based on its expected return and risk.
 

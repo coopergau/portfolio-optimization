@@ -20,7 +20,7 @@ from visualizations import (
     plot_monte_carlo_avg
 )
 from portfolio_stats import portfolio_return_and_risk
-from monte_carlo import brownian_simulation
+from monte_carlo import simulate_portfolio_returns
 
 # Historical data settings
 TOTAL_YEARS_BACK = 3
@@ -69,8 +69,8 @@ def main():
     example_return, example_risk = find_similar_random_portfolio(returns, cov_matrix, ex_return)
 
     # Calculate Monte Carlo smiulations
-    potimal_portfolio_paths = brownian_simulation(INITIAL_VALUE, ex_return, ex_risk, TOTAL_TIME, STEP_SIZE, SIMS)
-    example_portfolio_paths = brownian_simulation(INITIAL_VALUE, example_return, example_risk, TOTAL_TIME, STEP_SIZE, SIMS)
+    potimal_portfolio_paths = simulate_portfolio_returns(INITIAL_VALUE, ex_return, ex_risk, TOTAL_TIME, STEP_SIZE, SIMS)
+    example_portfolio_paths = simulate_portfolio_returns(INITIAL_VALUE, example_return, example_risk, TOTAL_TIME, STEP_SIZE, SIMS)
     
     # Plot simulation visuals
     plot_monte_carlo_all(potimal_portfolio_paths)
