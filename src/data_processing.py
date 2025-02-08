@@ -2,8 +2,8 @@ from datetime import datetime, timedelta
 import yfinance as yf
 import numpy as np 
 import cvxpy as cp
-from .optimization import optimize_portfolio
-from .portfolio_stats import portfolio_return_and_risk, portfolio_sharpe_ratio
+from optimization import optimize_portfolio
+from portfolio_stats import portfolio_return_and_risk, portfolio_sharpe_ratio
 
 TRADING_DAYS_PER_YEAR = 252
 
