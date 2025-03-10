@@ -45,9 +45,10 @@ To choose specific tickers replace
    tickers = random.sample(tickers, ASSETS)
    ```
    with
+
    ```main.py
    ticker = [MSFT, AAPL, NFLX, NVDA] # Or whatever combination of stocks you want
-
+   ```
 
 
 
