@@ -39,11 +39,11 @@ For a selected set of assets, the project provides:
    ```bash
    python3 main.py
 
-3. Adjust parameters as necessary:
-   * To choose specific tickers replace
+3. **Adjust parameters as necessary:**
+To choose specific tickers replace
    ```main.py
    tickers = random.sample(tickers, ASSETS)
-
+   ```
    with
    ```main.py
    ticker = [MSFT, AAPL, NFLX, NVDA] # Or whatever combination of stocks you want
