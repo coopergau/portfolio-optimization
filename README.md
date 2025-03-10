@@ -49,9 +49,8 @@ For a selected set of assets, the project provides:
    with
 
    ```python
-   tickers = [MSFT, AAPL, NFLX, NVDA] # Or whatever combination of assets you want
+   tickers = ["MSFT", "AAPL", "NFLX", "NVDA"] # Or whatever combination of assets you want
    ```
-
 
 
 What do we have
