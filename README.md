@@ -34,10 +34,12 @@ For a selected set of assets, the project provides:
 1. **Install dependencies:**  
    ```bash
    pip install -r requirements.txt
+   ```
 
 2. **Run the optimization script:**
    ```bash
    python3 main.py
+   ```
 
 3. **Adjust parameters as necessary:**
 - To choose specific tickers replace
