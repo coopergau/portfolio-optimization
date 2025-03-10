@@ -1,7 +1,6 @@
 # Standard Libraries
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
 import random
 
 # Custom Modules
@@ -60,8 +59,8 @@ def main():
     # Get single minimum risk portfolio
     weights = optimize_portfolio(returns, cov_matrix, TARGET_RETURN)
     rounded_weights = np.round(weights, 3)
-    title =f"Minimum Risk Portfolio with {TARGET_RETURN*100} % Expected Return"
-    display_portfolio_bar_chart(rounded_weights, tickers, title)
+    min_risk_title =f"Minimum Risk Portfolio with {TARGET_RETURN*100} % Expected Return"
+    display_portfolio_bar_chart(rounded_weights, tickers, min_risk_title)
 
     # Get expected portfolio return and risk
     ex_return, ex_risk = portfolio_return_and_risk(returns, cov_matrix, weights)
