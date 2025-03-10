@@ -43,13 +43,13 @@ For a selected set of assets, the project provides:
 
 3. **Adjust parameters as necessary:**
 - To choose specific tickers replace
-   ```main.py
+   ```python
    tickers = random.sample(tickers, ASSETS)
    ```
    with
 
-   ```main.py
-   ticker = [MSFT, AAPL, NFLX, NVDA] # Or whatever combination of assets you want
+   ```python
+   tickers = [MSFT, AAPL, NFLX, NVDA] # Or whatever combination of assets you want
    ```
 
 
