@@ -6,9 +6,22 @@ This project uses Markowitz Portfolio Theory and convex optimization to determin
 For a selected set of assets, the project provides:
 
 ## 1. Portfolio Weight Comparisons
-   * First, computes an **evenly weighted portfolio** as a baseline.
-   * Then, finds the **minimum-risk portfolio** that achieves the same expected return.
-   * Displays the weight distributions in a stacked bar chart and compares risk metrics.
+   * First, calculates an evenly weighted portfolio as a baseline.  
+   * Then, optimizes for the lowest-risk portfolio that achieves the same expected return.  
+   * Visualizes the weight distributions in a stacked bar chart and compares risk metrics.
+
+## 2. Efficeint Frontier Approximation
+   * Computes minimum risk portfolios for a series of different rates of return and plots them on a return vs. risk graph.
+   * Uses the minimum risk portfolios to interpolate and draw the efficient frontier.
+   * Identifies the portfolio with maximum Sharpe ratio on the graph.
+   * Computes and plots a large number of randomly weighted portfolios to help visulaize the meaning behind the efficient frontier.
+
+## 3. Sharpe Ratio Graphs
+   * Computes the Sharpe ratios of the minimum risk portfolios and graphs them vs. risk and vs. return.
+
+## 4. Monte Carlo Simulations
+   * Simulates thousands of possible portfolio value paths to compare potential performance of different portfolios.
+   * Used to identify realistic worst case scenarios to assess portfolio risk exposure.
 
 
 What do we have
