@@ -24,11 +24,11 @@ from monte_carlo import simulate_portfolio_returns
 # Historical data settings
 TOTAL_YEARS_BACK = 3
 TOTAL_DAYS_BACK = 365 * TOTAL_YEARS_BACK
-ASSETS = 10
+ASSETS = 5
 
 # Optimization settings
 RISK_FREE_RETURN = 0.03
-TARGET_RETURN = 0.15
+TARGET_RETURN = 0.15 # Can be used in place of even_return if not comparing to evenly weighted portfolio
 
 # Efficient frontier and Sharpe ratio settings
 # From 0.05 to 0.8 jumping by 0.01
@@ -56,14 +56,23 @@ def main():
     # Get expected returns vector and covariance matrix
     returns, cov_matrix = get_asset_data(tickers, TOTAL_DAYS_BACK)
 
-    # Get single minimum risk portfolio
-    weights = optimize_portfolio(returns, cov_matrix, TARGET_RETURN)
+    # Get risk and return of evenly weighted portfolio
+    even_weights = np.full(len(tickers), 1 / len(tickers))    
+    even_return, even_risk = portfolio_return_and_risk(returns, cov_matrix, even_weights)
+    print(even_risk)
+    even_weight_title = f"Evenly Weighted Portfolio"
+    display_portfolio_bar_chart(even_weights, tickers, even_weight_title)
+
+    # Calculate weights of minimum risk portfolio
+    weights = optimize_portfolio(returns, cov_matrix, even_return)
     rounded_weights = np.round(weights, 3)
-    min_risk_title =f"Minimum Risk Portfolio with {TARGET_RETURN*100} % Expected Return"
+    min_risk_title =f"Minimum Risk Portfolio with {np.round(even_return, 3)*100} % Expected Return"
     display_portfolio_bar_chart(rounded_weights, tickers, min_risk_title)
 
     # Get expected portfolio return and risk
     ex_return, ex_risk = portfolio_return_and_risk(returns, cov_matrix, weights)
+    print(ex_risk)
+
     # Get a random portfolio with a return that is within half a percent
     example_return, example_risk = find_similar_random_portfolio(returns, cov_matrix, ex_return)
 

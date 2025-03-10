@@ -27,7 +27,7 @@ def get_asset_data(tickers, days_back):
     start_time = (now - timedelta(days=days_back))
 
     # Get asset data
-    closes = yf.download(tickers, start=start_time, end=now, progress=False)["Close"]
+    closes = yf.download(tickers, start=start_time, end=now)["Close"]
     closes = closes[tickers] # Make sure the order is the same as the original ticker list
     
     # Get average geometric annualized return 
