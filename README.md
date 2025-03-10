@@ -32,7 +32,7 @@ For a selected set of assets, the project provides:
 ## How to Run  
 
 1. **Install dependencies:**  
-   ```bash
+   ```shell script
    pip install -r requirements.txt
    ```
 
