@@ -27,8 +27,8 @@ def plot_scatter(x, y, line=False, xlabel="X-axis", ylabel="Y-axis", title="Scat
     plt.gca().add_line(v_line)
     plt.gca().add_line(h_line)
     max_point_label = f'Max {ylabel} Point: ({round(max_x, 2)}, {round(max_y, 2)})'
-    fake_handle = Line2D([], [], color='none', label=max_point_label)
-    plt.legend(handles=[fake_handle], loc='best', handletextpad=0.1, borderpad=0.2, frameon=False)
+    max_point_handle = Line2D([], [], color='none', label=max_point_label)
+    plt.legend(handles=[max_point_handle], loc='best', handletextpad=0.1, borderpad=0.2, frameon=False)
 
     # Plot data
     plt.ylim(0, max_y * 1.2)
@@ -80,21 +80,27 @@ def display_portfolio_bar_chart(weights, assets, title):
             label=[f"{asset} ({abs(weight)*100:.1f}%)" for asset, weight in zip(assets, weights)])
     
     handles, labels = plt.gca().get_legend_handles_labels()
-    plt.legend(handles[::-1], labels[::-1], bbox_to_anchor=(1, 1), loc='best')
+    plt.legend(handles[::-1], labels[::-1], title="Asset Weights", bbox_to_anchor=(1, 1), loc='best')
     plt.title(title)
     plt.show()
 
-def plot_monte_carlo_all(paths):
+def plot_monte_carlo_all(paths, title):
     """
     Plot the lines of all simulated portfolio paths.
     """
+    final_values = paths[:, -1]
+    lowest_final_value = np.min(final_values)
+    worst_performance_label = f"Worst Performing Portfolio Value: ${np.round(lowest_final_value, 0)} "
+    plt.hlines(y=lowest_final_value, xmin=0, xmax=252, color='red', linestyle='--', label=worst_performance_label)
+    plt.legend(loc="lower left")
+
     plt.plot(paths.T)
     plt.xlabel("Trading Days")
-    plt.ylabel("Portfolio Value")
-    plt.title("Portfolio Simulations")
+    plt.ylabel("Portfolio Value (Dollars)")
+    plt.title(title)
     plt.show()
 
-def plot_monte_carlo_avg(paths):
+def plot_monte_carlo_avg(paths, title):
     """
     Plot the avrage of all the portfolio paths.
     """
@@ -102,5 +108,5 @@ def plot_monte_carlo_avg(paths):
     plt.plot(average_path)
     plt.xlabel("Trading Days")
     plt.ylabel("Portfolio Value")
-    plt.title("Average Performance of Portfolio")
+    plt.title(title)
     plt.show()

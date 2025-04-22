@@ -13,8 +13,8 @@ def simulate_portfolio_returns(initial_value, expected_return, expected_risk, to
         sims (int): Number of simulations computed.
 
     Returns:
-        portfolio_paths (np.array): Each row is one path of the potfolio's value, there
-        are sims amount of them. Each column is the porfolio value at that given timestep.
+        portfolio_paths (np.ndarray) of shape (sims, total_steps + 1): Each row is one path of the potfolio's
+        value, there are sims amount of them. Each column is the porfolio value at that given timestep.
     """
     # Time incriments
     total_steps = int(total_time / step_size)
@@ -28,10 +28,10 @@ def simulate_portfolio_returns(initial_value, expected_return, expected_risk, to
 
     # Compute log returns
     drift = (expected_return - 0.5 * expected_risk**2) * step_size
-    random_diiffusion = expected_risk * np.sqrt(step_size) * Z
-    log_returns = drift + random_diiffusion
+    random_diffusion = expected_risk * np.sqrt(step_size) * Z
+    log_returns = drift + random_diffusion
 
     # Fill the portfolio paths
-    portfolio_paths[:, 1:] = initial_value * np.exp(np.cumsum(log_returns, axis=1))
+    portfolio_paths[:, 1:] = portfolio_paths[:, [0]] * np.exp(np.cumsum(log_returns, axis=1))
 
     return portfolio_paths

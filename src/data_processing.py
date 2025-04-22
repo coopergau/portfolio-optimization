@@ -115,27 +115,3 @@ def get_random_portfolios(returns, cov_matrix, amount):
         actual_returns.append(portfolio_return)
 
     return actual_returns, risks
-
-def find_similar_random_portfolio(returns, cov_matrix, target_return, tolerance=0.005):
-    """
-    Finds a randomly weight portfolio with a similar return to the target_return provided.
-
-    Args:
-        returns (np.array): Expected returns for each asset (1D array).
-        cov_matrix (np.array): Covariance matrix of asset returns (2D array).
-        target_return (float): The return the random portfolio's return has to be close to.
-        tolerance (float): The maximum difference between the target return and the random 
-        portfolio return.
-
-    Returns:
-        tuple: (example_returns[0], example_risks[0])
-            - example_returns[0] (float): The return of the random portfolio.
-            - example_risks[0] (float): The risk of the random portfolio.
-    """
-    while True:
-        example_returns, example_risks = get_random_portfolios(returns, cov_matrix, 1)
-        if abs(example_returns[0] - target_return) <= tolerance:
-            return example_returns[0], example_risks[0]
-
-
-
