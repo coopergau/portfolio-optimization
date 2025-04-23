@@ -61,7 +61,6 @@ def main():
     # Get risk and return of evenly weighted portfolio
     even_weights = np.full(len(tickers), 1 / len(tickers))    
     even_return, even_risk = portfolio_return_and_risk(returns, cov_matrix, even_weights)
-    print(even_risk)
     even_weight_title = f"Evenly Weighted Portfolio with {np.round(even_return*100, 1)} % Expected Return and {np.round(even_risk*100, 1)} % Risk"
     display_portfolio_bar_chart(even_weights, tickers, even_weight_title)
 
@@ -69,7 +68,6 @@ def main():
     # Calculate and display weights of the minimum risk portfolio
     weights = optimize_portfolio(returns, cov_matrix, even_return)
     optimized_portfolio_return, optimized_portfolio_risk = portfolio_return_and_risk(returns, cov_matrix, weights)
-    print(optimized_portfolio_risk)
     rounded_weights = np.round(weights, 3)
     min_risk_title =f"Minimum Risk Portfolio with {np.round(optimized_portfolio_return*100, 1)} % Expected Return and {np.round(optimized_portfolio_risk*100, 1)} % Risk"
     display_portfolio_bar_chart(rounded_weights, tickers, min_risk_title)
