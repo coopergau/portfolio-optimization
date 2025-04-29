@@ -60,24 +60,24 @@ For this example we will use the tickers ['PDD', 'ORLY', 'TMUS', 'DLTR', 'ON'].
 
 ### 1. Portfolio Weight Comparisons
 
-<img src="images/even_weights.PNG" width="300" />
-<img src="images/min_risk_weights.PNG" width="300" />
+<img src="images/even_weights.PNG" width="500" />
+<img src="images/min_risk_weights.PNG" width="500" />
 
 ### 2. Monte Carlo Simulations
 
-<img src="images/even_sim.PNG" width="300" />
-<img src="images/min_risk_sim.PNG" width="300" />
+<img src="images/even_sim.PNG" width="500" />
+<img src="images/min_risk_sim.PNG" width="500" />
 
-<img src="images/even_avg.PNG" width="300" />
-<img src="images/min_risk_avg.PNG" width="300" />
+<img src="images/even_avg.PNG" width="500" />
+<img src="images/min_risk_avg.PNG" width="500" />
    
 ### 3. Efficeint Frontier Approximation
 
-<img src="images/ef.PNG" width="300" />
+<img src="images/ef.PNG" width="500" />
    
 ### 4. Sharpe Ratio Visuals
-<img src="images/sharpe_vs_return.PNG" width="300" />
-<img src="images/sharpe_vs_risk.PNG" width="300" />
+<img src="images/sharpe_vs_return.PNG" width="500" />
+<img src="images/sharpe_vs_risk.PNG" width="500" />
 
 ## Theory
 
