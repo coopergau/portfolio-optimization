@@ -64,11 +64,20 @@ For this example we will use the tickers ['PDD', 'ORLY', 'TMUS', 'DLTR', 'ON'].
 ![Min Risk](images/min_risk_weights.PNG)
 
 ### 2. Monte Carlo Simulations
+
+![Even Sim](images/even_sim.PNG)
+![Min Risk Sim](images/min_risk_sim.PNG)
+
+![Even Avg](images/even_avg.PNG)
+![Min Risk Avg](images/min_risk_avg.PNG)
    
 ### 3. Efficeint Frontier Approximation
+
+![Efficient Frontier](images/ef.PNG)
    
 ### 4. Sharpe Ratio Visuals
-
+![Sharpe vs return](images/sharpe_vs_return.PNG)
+![Sharpe vs risk](images/sharpe_vs_risk.PNG)
 
 ## Theory
 
