@@ -68,7 +68,7 @@ def display_portfolio_bar_chart(weights, assets, title):
     Displays a stacked bar chart showing the proportions of each asset in a ortfolio
     """
     # Get random distinct colours
-    cmap = plt.get_cmap('tab20')  # Good for up to 20 distinct colors
+    cmap = plt.get_cmap('tab20')
     colours = [cmap(i) for i in np.linspace(0, 1, len(assets))]
 
     # Create placeholder bar
@@ -81,7 +81,9 @@ def display_portfolio_bar_chart(weights, assets, title):
     
     handles, labels = plt.gca().get_legend_handles_labels()
     plt.legend(handles[::-1], labels[::-1], title="Asset Weights", bbox_to_anchor=(1, 1), loc='best')
+    #plt.tight_layout(rect=[0, 0, 1, 0.95])
     plt.title(title)
+    plt.tight_layout()
     plt.show()
 
 def plot_monte_carlo_all(paths, title):

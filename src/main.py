@@ -52,7 +52,9 @@ def main():
     tickers_df = pd.read_csv("../nasdaq100.csv")
     tickers = tickers_df["Ticker"].tolist()
     tickers = random.sample(tickers, ASSETS)
-    # tickers = ["MSFT", "AAPL", "NFLX", "NVDA"] # This line can be used to select specific tickers
+    #tickers = ["MSFT", "AAPL", "NFLX", "NVDA"] # This line can be used to select specific tickers
+    tickers = ['PDD', 'ORLY', 'TMUS', 'DLTR', 'ON'] # Good example
+    print(tickers)
 
     # Get expected returns vector and covariance matrix
     returns, cov_matrix = get_asset_data(tickers, TOTAL_DAYS_BACK)
@@ -78,15 +80,15 @@ def main():
     even_portfolio_paths = simulate_portfolio_returns(INITIAL_VALUE, even_return, even_risk, TOTAL_TIME, STEP_SIZE, SIMS)
     
     # Plot simulation visuals
-    optimized_portfolio_sims_title = f"Portfolio Simulations Using Optimal Weights"
     even_portfolio_sims_title = f"Portfolio Simulations Using Even Weights"
-    plot_monte_carlo_all(optimized_portfolio_paths, optimized_portfolio_sims_title)
+    optimized_portfolio_sims_title = f"Portfolio Simulations Using Optimal Weights"
     plot_monte_carlo_all(even_portfolio_paths, even_portfolio_sims_title)
+    plot_monte_carlo_all(optimized_portfolio_paths, optimized_portfolio_sims_title)
     
-    optimized_portfolio_avg_title = f"Average Portfolio Performance Using Optimal Weights"
     even_portfolio_avg_title = f"Average Portfolio Performance Using Even Weights"
-    plot_monte_carlo_avg(optimized_portfolio_paths, optimized_portfolio_avg_title)
+    optimized_portfolio_avg_title = f"Average Portfolio Performance Using Optimal Weights"
     plot_monte_carlo_avg(even_portfolio_paths, even_portfolio_avg_title)
+    plot_monte_carlo_avg(optimized_portfolio_paths, optimized_portfolio_avg_title)
 
     # --------------- Efficient Frontier ---------------
     # Get the efficient frontier data points
