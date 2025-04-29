@@ -1,38 +1,40 @@
 # Portfolio Optimization Using Markowitz Theory
 ## Overview
-This project uses Markowitz Portfolio Theory and convex optimization to determine the ideal asset allocations based on risk and return. The optimizer finds the minimum-risk portfolio that meets a target return while visualizing key insights, such as the Efficient Frontier, Monte Carlo simulations, and Sharpe Ratio comparisons.
+This project uses Modern Portfolio Theory and convex optimization to find the ideal asset allocations based on risk and return. The optimizer calculates the minimum-risk portfolio that meets a target expected return while visualizing key insights, such as the Efficient Frontier, portfolio performance simulations, and Sharpe Ratio behaviour.
 
 ## Features
 For a selected set of assets, the project provides:
 
 ### 1. Portfolio Weight Comparisons
    * First, calculates an evenly weighted portfolio as a baseline.  
-   * Then, optimizes for the lowest-risk portfolio that achieves the same expected return.  
+   * Then, optimizes for the lowest-risk portfolio that achieves the same (or better) expected return.  
    * Visualizes the weight distributions in a stacked bar chart and compares risk metrics.
 
-### 2. Efficeint Frontier Approximation
-   * Computes minimum risk portfolios for a series of different rates of return and plots them on a return vs. risk graph.
-   * Uses the minimum risk portfolios to interpolate and draw the efficient frontier.
-   * Identifies the portfolio with maximum Sharpe ratio on the graph.
-   * Computes and plots a large number of randomly weighted portfolios to help visulaize the meaning behind the efficient frontier.
-
-### 3. Sharpe Ratio Graphs
-   * Computes the Sharpe ratios of the minimum risk portfolios and graphs them vs. risk and vs. return.
-
-### 4. Monte Carlo Simulations
-   * Simulates thousands of possible portfolio value paths to compare potential performance of different portfolios.
+### 2. Monte Carlo Simulations
+   * Simulates thousands of possible portfolio value paths to compare the potential performance of the baseline and the optimized portfolios.
    * Used to identify realistic worst case scenarios to assess portfolio risk exposure.
+   * Also calculates the average performance of the two portfolios.
+
+### 3. Efficeint Frontier Approximation
+   * Computes minimum risk portfolios for a series of different rates of return and plots them on a return vs. risk graph.
+   * Uses these minimum risk portfolios to interpolate and draw the efficient frontier.
+   * Computes and plots a large number of randomly weighted portfolios to help visulaize the meaning behind the efficient frontier.
+   * Identifies the portfolio with maximum Sharpe ratio on the graph.
+
+### 4. Sharpe Ratio Visuals
+   * Computes the Sharpe ratios of the minimum risk portfolios and plots them vs. risk and vs. return.
+   * Used to analyze the behaviour of the Sharpe ratio as risk and return vary.
 
 ## Requirements  
 - Python 3.x  
 - Dependencies:  
-  - `yfinance` (Ensure up-to-date market data)  
+  - `yfinance` (Ensure package is up to date for proper api usage)  
   - `numpy`, `pandas`, `cvxpy`, `matplotlib`
 
 ## How to Run  
 
 1. **Install dependencies:**  
-   ```shell script
+   ```bash
    pip install -r requirements.txt
    ```
 
@@ -42,7 +44,7 @@ For a selected set of assets, the project provides:
    ```
 
 3. **Adjust parameters as necessary:**
-- To choose specific tickers replace
+- To choose specific tickers, in main.py replace
    ```python
    tickers = random.sample(tickers, ASSETS)
    ```
@@ -51,6 +53,24 @@ For a selected set of assets, the project provides:
    ```python
    tickers = ["MSFT", "AAPL", "NFLX", "NVDA"] # Or whatever combination of assets you want
    ```
+
+## Example
+
+For this example we will use the tickers ['PDD', 'ORLY', 'TMUS', 'DLTR', 'ON'].
+
+### 1. Portfolio Weight Comparisons
+
+![Even](images/even_weights.PNG)
+![Min Risk](images/min_risk_weights.PNG)
+
+### 2. Monte Carlo Simulations
+   
+### 3. Efficeint Frontier Approximation
+   
+### 4. Sharpe Ratio Visuals
+
+
+## Theory
 
 
 What do we have
@@ -66,3 +86,6 @@ What do we have
     - Do some comparisons of 10 random assets: optimal vs evenly weights, and/or optimal vs randomly weighted
     - Compare picking from the whole nasdaq (or like top 20 biggest companies on nasdaq) vs the qqq index
     - mention that yfinance needs to be up to date for it to work
+
+# Things to note
+The solver aim is to minimze risk while having expected return be at least the target given return, so it often gives a portfolio that has a return that is actually higher than the evenly weighted portfolio
