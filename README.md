@@ -116,6 +116,7 @@ It is common for the risk averse investor to want to minimize their risk while h
 Minimize `wᵀ Σ w`
 
 Subject to 
+
 `wᵀ r ≥ target`  
 `∑ wᵢ = 1`  
 `wᵢ ≥ 0`
