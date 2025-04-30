@@ -111,11 +111,14 @@ Where `w` is the vector of asset weights and `Σ` is the covariance matrix of as
 `E[R] = wᵀ r`  
 Where `r` is the vector of expected asset returns.
 
-It is common for the risk averse investor to want to minimize their risk while having their expected return meet some threshold. If we call this threshold target,then we can turn this situation into the following convex optimization problem:
+It is common for the risk averse investor to want to minimize their risk while having their expected return meet some threshold. If we call this threshold target, then we can turn this situation into the following convex optimization problem:
+
 Minimize `wᵀ Σ w`
+
 Subject to 
 `wᵀ r ≥ target`  
 `∑ wᵢ = 1`  
 `wᵢ ≥ 0`
+
 To allow for short selling the last constraint can be ignored.
 
