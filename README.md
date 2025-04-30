@@ -1,9 +1,9 @@
-# Portfolio Optimization Using Markowitz Theory
+# Portfolio Optimization Using Modern Portfolio Theory
 
 ## Table of Contents
 - [Overview](#overview)
 - [Features](#features)
-- [How To Run](#how-to-run)
+- [How to Run](#how-to-run)
 - [Example](#example)
 - [Theory](#theory)
 
@@ -102,8 +102,7 @@ Sometimes it is useful to not just find the maximum point of measurement, but to
 
 ## Theory
 
-Under Modern Portfolio Theory, risk is defined as the expected variance of the portfolio.
-Variance is calculated using the covariance matrix of asset returns. The idea behind this is that even if you split up your capital between many different assets, if they are all strongly correlated with each other then your portfolio might be less diverse and more risky than it seems. We can represent this mathematically as:
+Modern Portfolio Theory is a framework that is designed for constructing portfolios that optimize the trade of between risk and return. The centre idea is diversification, which it quantifies using the covariance matrix. The covariance matrix measures how correlated the performance of different assets are. The idea behind this is that even if you split up your capital between many different assets, if they are all strongly correlated, then your portfolio might be less diverse and more risky than it seems. Modern Portfolio Theory defines risk as the expected variance of the portfolio, which can be mathematically represented as:
 
 `Risk = wᵀ Σ w`  
 Where `w` is the vector of asset weights and `Σ` is the covariance matrix of asset returns.
@@ -118,8 +117,7 @@ Minimize `wᵀ Σ w`
 Subject to 
 
 `wᵀ r ≥ target`  
-`∑ wᵢ = 1`  
-`wᵢ ≥ 0`
+`∑ wᵢ = 1` (ensures all the capital is used) 
+`wᵢ ≥ 0` (prevents short selling, though this can be ignored to allow for short selling)
 
-To allow for short selling the last constraint can be ignored.
-
+The Efficient Frontier, which plots the minimum-risk portfolios for each level of return, is a key outcome of this optimization problem. The portfolios that lay on the frontier are considered efficient because they represent the best trade-offs between risk and return. This project also includes Sharpe ratio calculations which quantify the ratio of excess return to risk. The portfolio with the maximum Sharpe Ratio is considered the most efficient.
