@@ -60,13 +60,21 @@ For this example we will use the tickers ['PDD', 'ORLY', 'TMUS', 'DLTR', 'ON'].
 
 ### 1. Portfolio Weight Comparisons
 
+Here we can see that the evenly weights portfolio has an expected return of 23.7% and a risk of 24.6%. The optimized minimum risk portfolio has a risk of 17.4% and a return of 29.4%. Mathematically, the expected return constraint is treated as an inequality, so cases like this where the minumum risk portfolio actually has a higher expected return than the evenly weighted portfolio can happen. Explicitly speaking, the solver found the portfolio with the lowest risk that has an expected return of at least 23.7%.
+
 <img src="images/even_weights.PNG" width="500" />
 <img src="images/min_risk_weights.PNG" width="500" />
 
 ### 2. Monte Carlo Simulations
 
+Next are the Monte Carlo simulations of the two portfolio values. Each graph plots a series of random walks using geometric Brownian Motion to simulate portfolio performance over the course of one year. These graphs simulate 1,000 scenarios with starting values of $10,000 each but that amount can easily be altered. 
+
+The main take away from these is that the optimized portfolio has a much tighter spread than the evenly weighted portfolio. To highight this, the worst performing simulations have been identified on both graphs: The worst of the evenly weights portfolio ends at $5528, while the worst of the minimum risk portfolios ends at $6722.
+
 <img src="images/even_sim.PNG" width="500" />
 <img src="images/min_risk_sim.PNG" width="500" />
+
+Graphs of the average of these simulations have also been included. The performance of a risk-free asset is depicted by a linear line. In this example there is not much difference due to the high number of simulations, but one can notice that the minimum risk portfolio is slightly more "linear". These visuals are more interesting in certain extreme examples where a stark difference between the lines can be observed.
 
 <img src="images/even_avg.PNG" width="500" />
 <img src="images/min_risk_avg.PNG" width="500" />
