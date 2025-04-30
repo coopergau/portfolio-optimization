@@ -1,4 +1,12 @@
 # Portfolio Optimization Using Markowitz Theory
+
+## Table of Contents
+- [Overveiw](#Overveiw)
+- [Features](#Features)
+- [How To Run](#How To Run)
+- [Example](#Example)
+- [Theory](#Theory)
+
 ## Overview
 This project uses Modern Portfolio Theory and convex optimization to find the ideal asset allocations based on risk and return. The optimizer calculates the minimum-risk portfolio that meets a target expected return while visualizing key insights, such as the Efficient Frontier, portfolio performance simulations, and Sharpe Ratio behaviour.
 
@@ -93,21 +101,3 @@ Sometimes it is useful to not just find the maximum point of measurement, but to
 <img src="images/sharpe_vs_risk.PNG" width="500" />
 
 ## Theory
-
-
-What do we have
-    - For a selected group of tickers:
-        - Optimizer that finds weights for portfolio with min risk that gives at least a target return (bar display of weights)
-        - Efficeint fronteir graph: EF, random portfolios, and Max Sharpe Ratio point highlighted
-        - Monte Carlo sims of portfolios
-            - Simulate the optimal porfolio paths and other ones with similar return to compare worst case paths
-            - Can compare avg paths but they end up being very similar 
-        - Graph of Sharpe Ratio vs return 
-        - Graph of Sharpe Ratio vs. risk
-
-    - Do some comparisons of 10 random assets: optimal vs evenly weights, and/or optimal vs randomly weighted
-    - Compare picking from the whole nasdaq (or like top 20 biggest companies on nasdaq) vs the qqq index
-    - mention that yfinance needs to be up to date for it to work
-
-# Things to note
-The solver aim is to minimze risk while having expected return be at least the target given return, so it often gives a portfolio that has a return that is actually higher than the evenly weighted portfolio
