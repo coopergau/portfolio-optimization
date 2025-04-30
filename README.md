@@ -1,11 +1,11 @@
 # Portfolio Optimization Using Markowitz Theory
 
 ## Table of Contents
-- [Overveiw](#Overveiw)
-- [Features](#Features)
-- [How To Run](#How To Run)
-- [Example](#Example)
-- [Theory](#Theory)
+- [Overveiw](#overveiw)
+- [Features](#features)
+- [How To Run](#how-to-run)
+- [Example](#example)
+- [Theory](#theory)
 
 ## Overview
 This project uses Modern Portfolio Theory and convex optimization to find the ideal asset allocations based on risk and return. The optimizer calculates the minimum-risk portfolio that meets a target expected return while visualizing key insights, such as the Efficient Frontier, portfolio performance simulations, and Sharpe Ratio behaviour.
