@@ -101,3 +101,21 @@ Sometimes it is useful to not just find the maximum point of measurement, but to
 <img src="images/sharpe_vs_risk.PNG" width="500" />
 
 ## Theory
+
+Under Modern Portfolio Theory, risk is defined as the expected variance of the portfolio.
+Variance is calculated using the covariance matrix of asset returns. The idea behind this is that even if you split up your capital between many different assets, if they are all strongly correlated with each other then your portfolio might be less diverse and more risky than it seems. We can represent this mathematically as:
+
+`Risk = wᵀ Σ w`  
+Where `w` is the vector of asset weights and `Σ` is the covariance matrix of asset returns.
+
+`E[R] = wᵀ r`  
+Where `r` is the vector of expected asset returns.
+
+It is common for the risk averse investor to want to minimize their risk while having their expected return meet some threshold. If we call this threshold target,then we can turn this situation into the following convex optimization problem:
+Minimize `wᵀ Σ w`
+Subject to 
+`wᵀ r ≥ target`  
+`∑ wᵢ = 1`  
+`wᵢ ≥ 0`
+To allow for short selling the last constraint can be ignored.
+
